@@ -5,21 +5,18 @@ public class Car implements Runnable {
 
     private static int CARS_COUNT;
 
-    private final Race race;
-    private final int speed;
-    private final String name;
-    private static final CountDownLatch cdlReady;
-    private static final CountDownLatch cdlFinish;
-    private static final CyclicBarrier cyclicBarrier;
+    private Race race;
+    private int speed;
+    private String name;
+    private static CountDownLatch cdlReady;
+    private static CountDownLatch cdlFinish;
+    private static CyclicBarrier cyclicBarrier;
 
     static {
-        CARS_COUNT = 0;
         cdlReady = MainClass.cdlReady;
         cdlFinish = MainClass.cdlFinish;
         cyclicBarrier = MainClass.cyclicBarrier;
     }
-
-
 
     public Car(Race race, int speed) {
         this.race = race;
@@ -27,6 +24,7 @@ public class Car implements Runnable {
         CARS_COUNT++;
         this.name = "Участник #" + CARS_COUNT;
     }
+
     @Override
     public void run() {
         try {
@@ -52,5 +50,7 @@ public class Car implements Runnable {
     public int getSpeed() {
         return speed;
     }
+
+
 }
 
