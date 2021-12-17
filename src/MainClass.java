@@ -3,12 +3,12 @@ import java.util.concurrent.CyclicBarrier;
 
 public class MainClass {
 
-    static int CARS_COUNT = 4;
-    static final CountDownLatch cdlReady = new CountDownLatch(CARS_COUNT);
-    static final CountDownLatch cdlFinish = new CountDownLatch(CARS_COUNT);
-    static final CyclicBarrier cyclicBarrier = new CyclicBarrier(CARS_COUNT);
-
         public static void main(String[] args) {
+
+             int CARS_COUNT = 4;
+             final CountDownLatch cdlReady = new CountDownLatch(CARS_COUNT);
+             final CountDownLatch cdlFinish = new CountDownLatch(CARS_COUNT);
+             final CyclicBarrier cyclicBarrier = new CyclicBarrier(CARS_COUNT);
 
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
 
@@ -17,7 +17,7 @@ public class MainClass {
 
         for (int i = 0; i < cars.length; i++) {
             final int speed = 20 + (int) (Math.random() * 10);
-            cars[i] = new Car(race, speed);
+            cars[i] = new Car(race, speed, (i + 1), cdlReady, cdlFinish, cyclicBarrier);
         }
 
         for (Car car : cars) {

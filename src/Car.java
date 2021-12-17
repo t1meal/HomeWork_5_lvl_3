@@ -3,26 +3,21 @@ import java.util.concurrent.CyclicBarrier;
 
 public class Car implements Runnable {
 
-    private static int CARS_COUNT;
-
     private Race race;
     private int speed;
     private String name;
-    private static CountDownLatch cdlReady;
-    private static CountDownLatch cdlFinish;
-    private static CyclicBarrier cyclicBarrier;
+    private CountDownLatch cdlReady;
+    private CountDownLatch cdlFinish;
+    private CyclicBarrier cyclicBarrier;
 
-    static {
-        cdlReady = MainClass.cdlReady;
-        cdlFinish = MainClass.cdlFinish;
-        cyclicBarrier = MainClass.cyclicBarrier;
-    }
 
-    public Car(Race race, int speed) {
+    public Car(Race race, int speed,int number, CountDownLatch cdlReady, CountDownLatch cdlFinish, CyclicBarrier cyclicBarrier) {
         this.race = race;
         this.speed = speed;
-        CARS_COUNT++;
-        this.name = "Участник #" + CARS_COUNT;
+        this.name = "Участник #" + number;
+        this.cdlReady = cdlReady;
+        this.cdlFinish = cdlFinish;
+        this.cyclicBarrier = cyclicBarrier;
     }
 
     @Override
